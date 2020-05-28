@@ -59,7 +59,7 @@ libhptzip = library('hptzip', src,
   version:'1.9.0',
   install : true)
 
-smapi_dep = declare_dependency(
+hptzip_dep = declare_dependency(
   link_with: libhptzip,
   dependencies: [huskylib_dep,zlib],
   include_directories : incdir)
