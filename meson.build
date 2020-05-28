@@ -2,6 +2,10 @@ project('hptzip','c', version:'1.9.0')
 
 cc = meson.get_compiler('c')
 
+add_project_arguments(
+  '-I'+meson.current_source_dir()+'/hptzip',
+  language : 'c')
+
 link_args = []
 compile_args = []
 
@@ -46,7 +50,7 @@ headers = files([
 
 ])
 
-incdir = include_directories(['hptzip','.'])
+incdir = include_directories(['.'])
 
 huskylib_proj = subproject('huskylib')
 huskylib_dep=huskylib_proj.get_variable('husky_dep')
