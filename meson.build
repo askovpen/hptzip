@@ -8,7 +8,11 @@ add_project_arguments(
 
 link_args = []
 compile_args = []
-
+if host_machine.system()=='cygwin'
+  add_project_arguments(
+     '-DUSE_FILE32API',
+    language : 'c')
+endif
 if cc.get_id() == 'msvc'
   add_project_arguments(
     '-D_CRT_SECURE_NO_DEPRECATE',
