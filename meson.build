@@ -54,8 +54,19 @@ incdir = include_directories(['.'])
 
 huskylib_proj = subproject('huskylib')
 huskylib_dep=huskylib_proj.get_variable('husky_dep')
-zlib_proj = subproject('zlib') #.get_variable('zlib_dep')
-zlib=zlib_proj.get_variable('zlib_dep')
+
+zlib=dependency('zlib')
+
+if not zlib.found()
+  zlib_proj = subproject('zlib') #.get_variable('zlib_dep')
+  zlib=zlib_proj.get_variable('zlib_dep')
+else
+  if cc.has_header_symbol('zlib.h','_Z_OF')
+    add_project_arguments(
+      '-DOF=_Z_OF',
+      language : 'c')
+  endif
+endif
 
 libhptzip = library('hptzip', src,
   include_directories : incdir,
