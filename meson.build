@@ -59,7 +59,7 @@ incdir = include_directories(['.'])
 huskylib_proj = subproject('huskylib')
 huskylib_dep=huskylib_proj.get_variable('husky_dep')
 
-zlib=dependency('zlib')
+zlib=dependency('zlib', required: false)
 
 if not zlib.found()
   zlib_proj = subproject('zlib') #.get_variable('zlib_dep')
